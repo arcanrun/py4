@@ -1,23 +1,25 @@
 class Students():
 
     students = []
-    names = []
-    telNumbers = []
-    birthdayDates =[]
-    secondNames = []
+    disciplines = []
+    # names = []
+    # telNumbers = []
+    # birthdayDates =[]
+    # secondNames = []
 
     def showMenu(self):
         print("\n---------- Главное меню -----------")
-        print("1. Показать курсантов уч. группы \n2. Добавить курсанта \n3. Найти курсанта\n4. Удалить курсанта\n")
-        keyForDict = int(input())
+        print("1. Показать курсантов уч. группы \n2. Добавить курсанта \n3. Найти курсанта\n4. Удалить курсанта\n5. Дисциплина\n")
+        keyForDict = input()
         dictionary = {
-                        1: self.showStudents,
-                        2: self.addStudent,
-                        3: self.showKursant,
-                        4: self.deleteStudent
-                     }
+                        '1': self.showStudents,
+                        '2': self.addStudent,
+                        '3': self.showKursant,
+                        '4': self.deleteStudent,
+                        '5': self.showDiscipline
+                     }.get(keyForDict, self.showMenu)()
 
-        return dictionary[keyForDict]()
+
 
 
 
@@ -148,8 +150,20 @@ class Students():
             else:
                 print("\nКурсант не найден\n")
                 return self.showStudents()
+    def showDiscipline(self):
 
+        print('\n1.Добавить дисциплину\n2.Удалить дисциплину\n3.Главное меню\n')
+        choose = input()
+        dictionary = {
+            '1': self.addDiscipline,
+            '2': self.removeDiscipline,
+            '3': self.showMenu
+        }.get(choose, self.showMenu)()
 
+    def addDiscipline(self):
+        pass
+    def removeDiscipline(self):
+        pass
 
     # def testName(self):
     # return print(self.names, "  ", self.secondNames)s
