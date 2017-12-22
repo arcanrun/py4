@@ -152,7 +152,7 @@ class Students():
 
 
     # def testName(self):
-    # return print(self.names, "  ", self.secondNames)
+    # return print(self.names, "  ", self.secondNames)s
 
 # ======================================================================
 
