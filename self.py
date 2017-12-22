@@ -46,7 +46,7 @@ class Students():
         self.students.append(newStudent)
         self.disciplinesOf.update({newStudent : {}})
 
-        
+
         print('Продолжить? - 1 \nГлавное меню - 2\n')
         nextStep = int(input())
 
@@ -157,11 +157,32 @@ class Students():
     def removeDiscipline(self):
         print(self.disciplinesOf)
         self.showDiscipline()
-    def letsSeeDiscipline(self):
-        for name, dis in self.disciplinesOf.items():
-            print(self.disciplinesOf[name], ': \n', '\t', dis)
 
+    def letsSeeDiscipline(self):
+        for i in self.disciplinesOf:
+            print(i)
+            for j in self.disciplinesOf[i]:
+                print('\t', j,':', self.disciplinesOf[i][j])
         self.showDiscipline()
+
+    def findKursantCustom(self):
+        print('\nДанные курсанта:\n')
+        kursant = input()
+
+        finded = 0
+        findedKurs = ''
+        for i in range(len(self.students)):
+            if kursant in self.students[i]:
+                finded += 1
+                findedKurs = self.students[i]
+
+                return findedKurs
+
+        if finded == 0:
+            findedKurs = 0
+            return findedKurs
+
+
     # def testName(self):
     # return print(self.names, "  ", self.secondNames)s
 
