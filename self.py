@@ -18,9 +18,6 @@ class Students():
                      }.get(keyForDict, self.showMenu)()
 
 
-
-
-
     def showStudents(self):
 
         if len(self.students) == 0:
@@ -108,7 +105,7 @@ class Students():
         dictionary = {
             '1': self.letsSeeDiscipline,
             '2': self.addDiscipline,
-            '3': self.removeDiscipline,
+            '3': self.showRemoveDisciplineOptions,
             '4': self.showMenu
         }.get(choose, self.showMenu)()
 
@@ -154,8 +151,34 @@ class Students():
         self.disciplinesOf[who][dis] = marks
         print(self.disciplinesOf)
         self.showDiscipline()
+
+    def showRemoveDisciplineOptions(self):
+        print('\n1.Удалить все дисциплины у курсанта\n2.Удалить конкретную дисциплину\n3.Назад\n')
+        choose = input()
+        dicttionary = {
+                '1': self.removAllDisciplines,
+                '2': self.removeDiscipline,
+                '3': self.showDiscipline
+        }.get(choose, self.showDiscipline)()
+
     def removeDiscipline(self):
-        print(self.disciplinesOf)
+        print('\nУ кого удаляем?\n')
+        who = self.findKursantCustom()
+        print('\nКакую дисциплину?\n')
+        self.letsSeeDisciplineDefenited(who)
+        dis = input()
+
+        which = self.disciplinesOf[who][dis]
+        self.disciplinesOf[who][dis] = {}
+        print('У курсанта ', who, 'удалены оценки по дисциплине', dis)
+        self.showMenu()
+
+    def removAllDisciplines(self):
+        print('У кого удаляем?')
+
+        who = self.findKursantCustom()
+        self.disciplinesOf[who] = {}
+        print('У курсанта ', who, 'все дисциплины удалены')
         self.showDiscipline()
 
     def letsSeeDiscipline(self):
@@ -164,6 +187,13 @@ class Students():
             for j in self.disciplinesOf[i]:
                 print('\t', j,':', self.disciplinesOf[i][j])
         self.showDiscipline()
+
+    def letsSeeDisciplineDefenited(self, who):
+        i = self.disciplinesOf[who]
+        for i in self.disciplinesOf:
+            print(i)
+            for j in self.disciplinesOf[i]:
+                print('\t', j,':', self.disciplinesOf[i][j])
 
     def findKursantCustom(self):
         print('\nДанные курсанта:\n')
