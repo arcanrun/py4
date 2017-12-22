@@ -2,11 +2,8 @@ class Students():
 
     students = []
     disciplinesOf = {}
-    disciplines = {}
-    # names = []
-    # telNumbers = []
-    # birthdayDates =[]
-    # secondNames = []
+
+
 
     def showMenu(self):
         print("\n---------- Главное меню -----------")
@@ -48,11 +45,8 @@ class Students():
 
         self.students.append(newStudent)
         self.disciplinesOf.update({newStudent : {}})
-        print(self.disciplinesOf)
-        # self.names.append(self.students[len(self.students)-1].split(' ')[0].strip().replace(' ',''))
-        # self.secondNames.append(self.students[len(self.students)-1].split(' ')[1].strip().replace(' ',''))
-        # self.telNumbers.append(self.students[len(self.students) - 1].split(' ')[2].strip().replace(' ', ''))
-        # self.birthdayDates.append(self.students[len(self.students) - 1].split(' ')[3].strip().replace(' ', ''))
+
+        
         print('Продолжить? - 1 \nГлавное меню - 2\n')
         nextStep = int(input())
 
@@ -91,51 +85,6 @@ class Students():
 
 
 
-    #     if name != 0:
-    #         clearName = name.replace(' ', '').strip()
-    #         for j in range(len(self.names)):
-    #
-    #             if self.names[j] == clearName:
-    #                 print('\nТакой курсант есть: \n', self.students[j])
-    #                 return self.showMenu()
-    #
-    #         print('не найдено')
-    #         return self.showMenu()
-    #
-    #
-    #     elif secName !=0:
-    #         clearsecName = secName.replace(' ', '').strip()
-    #         for j in range(len(self.names)):
-    #
-    #             if self.secondNames[j] == clearsecName:
-    #                 print('\nТакой курсант есть: \n', self.students[j])
-    #                 return self.showMenu()
-    #
-    #         print('не найдено')
-    #         return self.showMenu()
-    #
-    #     elif tel != 0:
-    #         clearTel = tel.replace(' ', '').strip()
-    #         for j in range(len(self.telNumbers)):
-    #
-    #             if self.telNumbers[j] == clearTel:
-    #                 print('\nТакой курсант есть: \n', self.students[j])
-    #                 return self.showMenu()
-    #
-    #         print('не найдено')
-    #         return self.showMenu()
-    #
-    #     elif bDate != 0:
-    #         clearBDate = bDate.replace(' ', '').strip()
-    #         for j in range(len(self.birthdayDates)):
-    #
-    #             if self.birthdayDates[j] == clearBDate:
-    #                 print('\nТакой курсант есть: \n', self.students[j])
-    #                 return self.showMenu()
-    #
-    #         print('не найдено')
-    #         return self.showMenu()
-
     def deleteStudent(self):
             print("\nВведите данные курсанта, которого нужно удалить:\n")
             infoKursDelete = input()
@@ -159,7 +108,7 @@ class Students():
         dictionary = {
             '1': self.letsSeeDiscipline,
             '2': self.addDiscipline,
-            '1': self.removeDiscipline,
+            '3': self.removeDiscipline,
             '4': self.showMenu
         }.get(choose, self.showMenu)()
 
@@ -168,7 +117,7 @@ class Students():
         kursant = input()
 
         finded = 0
-
+        findedKurs = ''
         for i in range(len(self.students)):
             if kursant in self.students[i]:
 
@@ -176,17 +125,23 @@ class Students():
                 findedKurs = self.students[i]
                 print(findedKurs)
                 break
+        if finded == 0:
+            print('Никого не нашли')
+            self.showDiscipline()
         print('\nВведите название дисциплины\n')
         discip = input()
-        newDis = {discip : ''}
-        self.disciplinesOf.update({findedKurs : newDis })
+
+
+        self.disciplinesOf[findedKurs][discip] = ''
+
         print(self.disciplinesOf)
         print('\n1.Добавить оценки:\n2.Назад\n')
+
         choose = input()
         dictionary = {
                     '1': self.addMarks,
                     '2': self.showDiscipline
-                    }.get(choose, self.showDiscipline())(findedKurs, discip)
+                    }.get(choose, self.showDiscipline)(findedKurs, discip)
         if finded < 0:
             print('\nНикого не нашли\n')
             self.showDiscipline()
@@ -195,11 +150,18 @@ class Students():
     def addMarks(self, who, dis):
         print('\nВведите оценки через пробел:\n')
         marks = input()
-        self.disciplinesOf.update({who : dis} )
+
+        self.disciplinesOf[who][dis] = marks
+        print(self.disciplinesOf)
+        self.showDiscipline()
     def removeDiscipline(self):
-        pass
+        print(self.disciplinesOf)
+        self.showDiscipline()
     def letsSeeDiscipline(self):
-        pass
+        for name, dis in self.disciplinesOf.items():
+            print(self.disciplinesOf[name], ': \n', '\t', dis)
+
+        self.showDiscipline()
     # def testName(self):
     # return print(self.names, "  ", self.secondNames)s
 

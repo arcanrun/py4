@@ -16,8 +16,8 @@
       <file leaf-file-name="self.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/self.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2">
-              <caret line="187" column="24" lean-forward="true" selection-start-line="187" selection-start-column="24" selection-end-line="187" selection-end-column="24" />
+            <state relative-caret-position="108">
+              <caret line="48" column="8" lean-forward="false" selection-start-line="48" selection-start-column="8" selection-end-line="48" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -38,6 +38,7 @@
       <find>sho</find>
       <find>showKursant</find>
       <find>names</find>
+      <find>disciplines</find>
     </findStrings>
     <replaceStrings>
       <replace>students</replace>
@@ -193,8 +194,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/self.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2">
-          <caret line="187" column="24" lean-forward="true" selection-start-line="187" selection-start-column="24" selection-end-line="187" selection-end-column="24" />
+        <state relative-caret-position="108">
+          <caret line="48" column="8" lean-forward="false" selection-start-line="48" selection-start-column="8" selection-end-line="48" selection-end-column="8" />
           <folding />
         </state>
       </provider>
