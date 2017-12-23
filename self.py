@@ -7,14 +7,15 @@ class Students():
 
     def showMenu(self):
         print("\n---------- Главное меню -----------")
-        print("1. Показать курсантов уч. группы \n2. Добавить курсанта \n3. Найти курсанта\n4. Удалить курсанта\n5. Дисциплина\n")
+        print("1. Показать курсантов уч. группы \n2. Добавить курсанта \n3. Найти курсанта\n4. Удалить курсанта\n5. Дисциплина\n6. Сортировка\n")
         keyForDict = input()
         dictionary = {
                         '1': self.showStudents,
                         '2': self.addStudent,
                         '3': self.showKursant,
                         '4': self.deleteStudent,
-                        '5': self.showDiscipline
+                        '5': self.showDiscipline,
+                        '6': self.showSortOptions
                      }.get(keyForDict, self.showMenu)()
 
 
@@ -212,12 +213,51 @@ class Students():
             findedKurs = 0
             return findedKurs
 
+    def showSortOptions(self):
+        print('\n1.Сортировка по имени\n2.Сортировка по фамилии\n3.Главное меню\n')
+        choose = input()
+        dictionary = {
+            '1': self.sortByName,
+            '2': self.sortBySecName,
+            '3': self.showMenu
+        }.get(choose, self.showSortOptions)()
 
-    # def testName(self):
-    # return print(self.names, "  ", self.secondNames)s
+    def sortByName(self):
 
-# ======================================================================
+        sorted = self.students[:]
+        sorted.sort()
+
+        for i in range(len(sorted)):
+            print(i+1, '.', sorted[i])
+
+        self.showMenu()
+
+    def sortBySecName(self):
+        sorted = []
+        for i in range(len(self.students)):
+
+            sorted.append(self.students[i].split(' ')[1].strip().replace(' ', ''))
+
+
+        middleSort = []
+
+        for k in range(len(self.students)):
+            middleSort.append(sorted[k] + ',' + self.students[k])
+
+        middleSort.sort()
+
+        final = []
+        for g in range(len(middleSort)):
+            final.append(middleSort[g].split(',', maxsplit=1)[1])
+
+        for j in range(len(final)):
+            print(j + 1, '.', final[j])
+
+
+
+        self.showMenu()
+
+# =================================== Main ===================================
 
 Students = Students()
-
 Students.showMenu()
